@@ -26,3 +26,8 @@ make
 ### Easy installation
  + Create folder APC40_Stage in MIDI Remote scripts folder (`/Applications/Ableton Live 9 Suite.app/Contents/App-Resources/MIDI Remote Scripts` for Ableton Live 9 Suite for MacOS)
  + Copy all files from `APC40_Stage/src` to this folder
+
+
+## Debugging
+
+Internal Ableton Live log file is located at ~/Library/Preferences/Ableton/Live\ 9.2.1/Log.txt (it depends on Live version, just google it). Also, I'm using my custom logger, it allows me to call log function from instance of each class I want, not only from instances of children of _Framework.ControlSurface. To use this custom logger, you should open src/Logger.py, set CUSTOM_DEBUG_LOGGING to True, and rewrite CUSTOM_LOG_FILE_PATH.

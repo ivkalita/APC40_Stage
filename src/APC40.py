@@ -19,6 +19,7 @@ from _APC.SkinDefault import make_default_skin, make_biled_skin
 from _APC.DetailViewCntrlComponent import DetailViewCntrlComponent
 from TransportComponent import TransportComponent
 from SessionComponent import SessionComponent
+from .Logger import custom_log
 SESSION_WIDTH = 8
 SESSION_HEIGHT = 5
 MIXER_SIZE = 8
@@ -28,6 +29,7 @@ class APC40(APC, OptimizedControlSurface):
 
     def __init__(self, *a, **k):
         super(APC40, self).__init__(*a, **k)
+        custom_log("Hello man!!!")
         self._color_skin = make_biled_skin()
         self._default_skin = make_default_skin()
         with self.component_guard():
