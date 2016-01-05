@@ -16,4 +16,13 @@ I have tested this script on Ableton Live Suite 9.2.1 only.
 
 ## Installation
 
-This section will be available soon.
+### Fast installation
+Check paths to Ableton Live application in Makefile if something goes wrong.
+```
+git clone https://github.com/kaduev13/APC40_Stage
+cd APC40_Stage
+make
+```
+### Easy installation
+ + Create folder APC40_Stage in MIDI Remote scripts folder (`/Applications/Ableton Live 9 Suite.app/Contents/App-Resources/MIDI Remote Scripts` for Ableton Live 9 Suite for MacOS)
+ + Copy all files from `APC40_Stage/src` to this folder
