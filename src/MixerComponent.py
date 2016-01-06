@@ -103,8 +103,29 @@ class ChanStripComponent(ChannelStripComponentBase):
     def current_monitoring_state_button_pressed(self):
         return self._current_monitoring_state_pressed
 
+    def update_current_monitoring_state(self, new_value, track):
+        custom_log("ChanStripComponent.update_current_monitoring_state")
+        if track.is_foldable or not hasattr(track, 'current_monitoring_state'):
+            return
+        if track == self._track:
+            track.current_monitoring_state = 0 if new_value else 1 #0 == IN, 1 == AUTO
+        else:
+            track.current_monitoring_state = 1
+
     def _current_monitoring_state_value(self, value):
         custom_log("ChanStripComponent._current_monitoring_state_value with value = " + str(value))
+        if self._current_monitoring_state_button == None:
+            raise AssertionError
+        if not value in range(128):
+            raise AssertionError
+        if not self.is_enabled() or self._track == None or not hasattr(self._track, 'current_monitoring_state'):
+            return
+        self._current_monitoring_state_pressed = self._track != None and self._track != self.song().master_track and value != 0 and self._current_monitoring_state_button.is_momentary()
+        if not self._current_monitoring_state_pressed:
+            return
+        new_value = self._track.current_monitoring_state == 1
+        for track in self.song().tracks:
+            self.update_current_monitoring_state(new_value, track)
 
 
 class MixerComponent(MixerComponentBase):
