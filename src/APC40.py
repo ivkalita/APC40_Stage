@@ -72,13 +72,13 @@ class APC40(APC, OptimizedControlSurface):
         self._selected_scene_launch_button = make_pedal_button(64, name='Selected_Scene_Launch_Button')
         self._volume_controls = []
         self._arm_buttons = []
-        self._solo_buttons = []
+        self._current_monitoring_state_buttons = []
         self._mute_buttons = []
         self._select_buttons = []
         for index in xrange(MIXER_SIZE):
             self._volume_controls.append(make_slider(index, 7, name='%d_Volume_Control' % index))
             self._arm_buttons.append(make_on_off_button(index, 48, name='%d_Arm_Button' % index))
-            self._solo_buttons.append(make_on_off_button(index, 49, name='%d_Solo_Button' % index))
+            self._current_monitoring_state_buttons.append(make_on_off_button(index, 49, name='%d_Current_Monitoring_State_Button' % index))
             self._mute_buttons.append(make_on_off_button(index, 50, name='%d_Mute_Button' % index))
             self._select_buttons.append(make_on_off_button(index, 51, name='%d_Select_Button' % index))
 
@@ -125,7 +125,7 @@ class APC40(APC, OptimizedControlSurface):
         self._track_stop_buttons = wrap_matrix(self._track_stop_buttons)
         self._volume_controls = wrap_matrix(self._volume_controls)
         self._arm_buttons = wrap_matrix(self._arm_buttons)
-        self._solo_buttons = wrap_matrix(self._solo_buttons)
+        self._current_monitoring_state_buttons = wrap_matrix(self._current_monitoring_state_buttons)
         self._mute_buttons = wrap_matrix(self._mute_buttons)
         self._select_buttons = wrap_matrix(self._select_buttons)
         self._device_param_controls = wrap_matrix(self._device_param_controls_raw)
@@ -138,7 +138,7 @@ class APC40(APC, OptimizedControlSurface):
         self._session_zoom = SessionZoomingComponent(self._session, name='Session_Overview', enable_skinning=True, is_enabled=False, layer=Layer(button_matrix=self._shifted_matrix, nav_up_button=self._with_shift(self._up_button), nav_down_button=self._with_shift(self._down_button), nav_left_button=self._with_shift(self._left_button), nav_right_button=self._with_shift(self._right_button), scene_bank_buttons=self._shifted_scene_buttons))
 
     def _create_mixer(self):
-        self._mixer = MixerComponent(MIXER_SIZE, auto_name=True, is_enabled=False, invert_mute_feedback=True, layer=Layer(volume_controls=self._volume_controls, arm_buttons=self._arm_buttons, solo_buttons=self._solo_buttons, mute_buttons=self._mute_buttons, track_select_buttons=self._select_buttons, shift_button=self._shift_button, crossfader_control=self._crossfader_control, prehear_volume_control=self._prehear_control))
+        self._mixer = MixerComponent(MIXER_SIZE, auto_name=True, is_enabled=False, invert_mute_feedback=True, layer=Layer(volume_controls=self._volume_controls, arm_buttons=self._arm_buttons, current_monitoring_state_buttons=self._current_monitoring_state_buttons, mute_buttons=self._mute_buttons, track_select_buttons=self._select_buttons, shift_button=self._shift_button, crossfader_control=self._crossfader_control, prehear_volume_control=self._prehear_control))
         self._mixer.master_strip().layer = Layer(volume_control=self._master_volume_control, select_button=self._master_select_button)
 
     def _create_device(self):
