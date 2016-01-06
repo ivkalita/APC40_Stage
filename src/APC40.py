@@ -28,8 +28,8 @@ class APC40(APC, OptimizedControlSurface):
     """ Script for Akai's APC40 Controller """
 
     def __init__(self, *a, **k):
+        custom_log("APC40.__init__")
         super(APC40, self).__init__(*a, **k)
-        custom_log("Hello man!!!")
         self._color_skin = make_biled_skin()
         self._default_skin = make_default_skin()
         with self.component_guard():
