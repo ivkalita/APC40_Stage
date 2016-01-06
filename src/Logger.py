@@ -1,5 +1,5 @@
 # Set this variable to True, if you want to use logging
-CUSTOM_DEBUG_LOGGING = True
+CUSTOM_DEBUG_LOGGING = False
 # Change this path by your log file path
 CUSTOM_LOG_FILE_PATH = "/Users/dev/ableton_log.txt"
 
