@@ -14,7 +14,7 @@ from _APC.APC import APC
 from _APC.ControlElementUtils import make_button, make_pedal_button, make_encoder, make_ring_encoder, make_slider
 from _APC.DeviceBankButtonElement import DeviceBankButtonElement
 from _APC.DeviceComponent import DeviceComponent
-from _APC.MixerComponent import MixerComponent
+from .MixerComponent import MixerComponent
 from _APC.SkinDefault import make_default_skin, make_biled_skin
 from _APC.DetailViewCntrlComponent import DetailViewCntrlComponent
 from TransportComponent import TransportComponent
