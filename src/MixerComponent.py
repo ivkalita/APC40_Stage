@@ -64,6 +64,14 @@ class ChanStripComponent(ChannelStripComponentBase):
 
     def _on_current_monitoring_state_changed(self):
         custom_log("ChanStripComponent._on_current_monitoring_state_changed")
+        if self.is_enabled() and self._current_monitoring_state_button != None:
+            if self._track != None or self.empty_color == None:
+                if self._track in self.song().tracks and hasattr(self._track, 'current_monitoring_state') and self._track.current_monitoring_state == 0:
+                    self._current_monitoring_state_button.turn_on()
+                else:
+                    self._current_monitoring_state_button.turn_off()
+            else:
+                self._current_monitoring_state_button.set_light(self.empty_color)
 
     def _track_has_monitoring_state(self, track):
         custom_log("ChanStripComponent._track_has_monitoring_state")
